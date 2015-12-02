@@ -1,0 +1,28 @@
+{
+  "name": "modbusjs",
+  "version": "0.0.1",
+  "description": "Node.JS modbus library",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razakj/modbusjs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "modbus",
+    "plc",
+    "automation"
+  ],
+  "author": "Jakub Razak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/razakj/modbusjs/issues"
+  },
+  "homepage": "https://github.com/razakj/modbusjs#readme"
+}
