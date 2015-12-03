@@ -14,6 +14,10 @@ Currently implemented and working functionality :
     *   writeSingleCoil
     *   writeSingleRegister
 
+## Installation
+```javascript
+npm install modbusjs
+```
 ## Usage
 ModbusJS is using ES6 Promises (thus no 3rd party promise module dependency). EventEmitter is also used to emit instance (ie. connection) related events, see below.
 ### ModbusTcpClient
