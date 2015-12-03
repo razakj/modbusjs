@@ -8,7 +8,7 @@ Currently implemented and working functionality :
 
 *   ModbusTcpClient - Modbus client (master) for communication over TCP 
     *   readCoils
-    *   readInputs
+    *   readDiscreteInputs
     *   readHoldingRegisters
     *   readInputRegisters
 
@@ -92,14 +92,14 @@ modbusTcpClient.readCoils(0, 10).then(function(result){
 });
 ```
 
-#### readInputs
+#### readDiscreteInputs
 
 Reads inputs from the modbus server. Same interface and return values as *readCoils*.
 
 **example**
 
 ```javascript
-modbusTcpClient.readInputs(0, 10).then(function(result){
+modbusTcpClient.readDiscreteInputs(0, 10).then(function(result){
     // Process result
 }).catch(function(err){
     // An error has occurred

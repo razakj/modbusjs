@@ -22,7 +22,7 @@ mtcp.connect().then(function(){
 
     });
     promises.push(mtcp.readCoils(0, 10));
-    promises.push(mtcp.readInputs(0, 10));
+    promises.push(mtcp.readDiscreteInputs(0, 10));
     promises.push(mtcp.readHoldingRegisters(290, 30));
     promises.push(mtcp.readHoldingRegisters(290, 30, {unsigned: true}));
     promises.push(mtcp.readInputgRegisters(0, 15));
