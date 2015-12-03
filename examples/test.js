@@ -1,4 +1,4 @@
-var ModbusTcpClient = require('../lib/modbustcpclient');
+var ModbusTcpClient = require('../index').ModbusTcpClient;
 
 var mtcp = new ModbusTcpClient('192.168.146.2', 502, {debug: true});
 
