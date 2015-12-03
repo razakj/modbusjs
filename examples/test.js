@@ -1,33 +1,44 @@
-var ModbusTcp = require('../lib/modbustcp');
+var ModbusTcpClient = require('../lib/modbustcpclient');
 
-var mtcp = new ModbusTcp('ifloodlights.eairlink.com', 502, {debug: true});
+var mtcp = new ModbusTcpClient('192.168.146.2', 502, {debug: true});
 
-mtcp.on('error', function(e){
-    console.log(e);
-    process.exit(0);
+mtcp.on('connect', function(err){
+    console.log('CONNECTED - EVENT');
 });
 
-mtcp.connect(function(){
-    // Test Read Coils
-    mtcp.readCoils(0, 2010, function (err, data, request, response) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(response);
-        }
-    });
-    mtcp.readInputs(0, 5, function (err, data, request, response) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(response);
-        }
-    });
-    mtcp.readHoldingRegisters(290, 126,function (err, data, request, response) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(response);
-        }
-    });
+mtcp.on('error', function(err){
+    console.log('ERROR - ' + err);
 });
+
+mtcp.on('disconnect', function(){
+    console.log('DISCONNECTED - EVENT');
+});
+
+mtcp.connect().then(function(){
+    var promises = [];
+    promises.push(mtcp.readCoils(0, 10));
+    promises.push(mtcp.readInputs(0, 10));
+    promises.push(mtcp.readHoldingRegisters(290, 30));
+    promises.push(mtcp.readHoldingRegisters(290, 30, {unsigned: true}));
+    promises.push(mtcp.readInputgRegisters(0, 15));
+    Promise.all(promises).then(function(results){
+        results.forEach(function(result){
+            console.log(result);
+        });
+        exit();
+    }).catch(function(err){
+        console.log(err);
+        exit();
+    });
+}).catch(function(err){
+    console.log(err);
+    exit();
+});
+
+function exit() {
+    mtcp.disconnect().then(function(){
+        console.log('DISCONNECTED - PROMISED');
+    }).catch(function(err){
+        console.log(err);
+    });
+}
