@@ -15,26 +15,28 @@ mtcp.on('disconnect', function(){
 });
 
 mtcp.connect().then(function(){
-    var promises = [];
-    promises.push(mtcp.readCoils(0, 10));
-    promises.push(mtcp.readDiscreteInputs(0, 10));
-    promises.push(mtcp.readHoldingRegisters(290, 30));
-    promises.push(mtcp.readHoldingRegisters(290, 30, {unsigned: true}));
-    promises.push(mtcp.readInputgRegisters(0, 15));
-    Promise.all(promises).then(function(results){
-        results.forEach(function(result){
-            console.log(result);
-        });
+    //var promises = [];
+    //promises.push(mtcp.readCoils(0, 20));
+    //promises.push(mtcp.readDiscreteInputs(0, 10));
+    //promises.push(mtcp.readHoldingRegisters(290, 5));
+    //promises.push(mtcp.readHoldingRegisters(290, 30, {unsigned: true}));
+    //promises.push(mtcp.readInputgRegisters(0, 15));
+    //Promise.all(promises).then(function(results){
+    //    results.forEach(function(result){
+    //        console.log(result);
+    //    });
+    //    exit();
+    //}).catch(function(err){
+    //    console.log(err);
+    //    exit();
+    //});
+    mtcp.writeSingleRegister(290, 333).then(function(res){
+        console.log(res);
         exit();
     }).catch(function(err){
         console.log(err);
         exit();
-    });
-    //mtcp.writeSingleCoil(6, 0).then(function(res){
-    //    console.log(res);
-    //}).catch(function(err){
-    //    console.log(err);
-    //})
+    })
 }).catch(function(err){
     console.log(err);
     exit();
