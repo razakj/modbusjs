@@ -11,6 +11,8 @@ Currently implemented and working functionality :
     *   readDiscreteInputs
     *   readHoldingRegisters
     *   readInputRegisters
+    *   writeSingleCoil
+    *   writeSingleRegister
 
 ## Usage
 ModbusJS is using ES6 Promises (thus no 3rd party promise module dependency). EventEmitter is also used to emit instance (ie. connection) related events, see below.
@@ -151,6 +153,59 @@ modbusTcpClient.readInputgRegisters(0, 10).then(function(result){
     // An error has occurred
 });
 ```
+
+#### writeSingleCoil
+
+Writes single coil value. 
+
+**function(address, value[,options])**
+
+*   address: Coil address
+*   value: Value to be written. Can be either true/false or 0/1 - Otherwise an error is returned.
+*   options: Optional
+    *   timeout: Request timeout. Default is 5 seconds.
+
+If request is successful then result is returned with following attributes
+*   value: Echoed value from the request
+*   request: Request object
+*   response: Response object
+
+**example**
+
+```javascript
+mtcp.writeSingleCoil(6, 0).then(function(res){
+    // Coil value has been changed
+}).catch(function(err){
+    // An error occured
+})
+```
+
+#### writeSingleRegister
+
+Writes single register value. 
+
+**function(address, value[,options])**
+
+*   address: Register address
+*   value: Value to be written. Maximum value is 0xFFFF.
+*   options: Optional
+    *   timeout: Request timeout. Default is 5 seconds.
+
+If request is successful then result is returned with following attributes
+*   value: Echoed value from the request
+*   request: Request object
+*   response: Response object
+
+**example**
+
+```javascript
+mtcp.writeSingleRegister(1, 123).then(function(res){
+    // Register value has been changed
+}).catch(function(err){
+    // An error occured
+})
+```
+
 ### Events
 
 No events are used for individual transactions. On events affecting whole Modbus instance are emitted.
