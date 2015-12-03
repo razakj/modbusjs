@@ -16,11 +16,6 @@ mtcp.on('disconnect', function(){
 
 mtcp.connect().then(function(){
     var promises = [];
-    mtcp.readCoils(0, 10).then(function(result){
-
-    }).catch(function(err){
-
-    });
     promises.push(mtcp.readCoils(0, 10));
     promises.push(mtcp.readDiscreteInputs(0, 10));
     promises.push(mtcp.readHoldingRegisters(290, 30));
@@ -35,6 +30,11 @@ mtcp.connect().then(function(){
         console.log(err);
         exit();
     });
+    //mtcp.writeSingleCoil(6, 0).then(function(res){
+    //    console.log(res);
+    //}).catch(function(err){
+    //    console.log(err);
+    //})
 }).catch(function(err){
     console.log(err);
     exit();
