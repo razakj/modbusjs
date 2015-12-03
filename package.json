@@ -1,6 +1,6 @@
 {
   "name": "modbusjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node.JS modbus library",
   "main": "index.js",
   "directories": {
