@@ -16,6 +16,11 @@ mtcp.on('disconnect', function(){
 
 mtcp.connect().then(function(){
     var promises = [];
+    mtcp.readCoils(0, 10).then(function(result){
+
+    }).catch(function(err){
+
+    });
     promises.push(mtcp.readCoils(0, 10));
     promises.push(mtcp.readInputs(0, 10));
     promises.push(mtcp.readHoldingRegisters(290, 30));
