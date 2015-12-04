@@ -288,7 +288,7 @@ mtcp.writeMultipleRegisters(1, [1,2,3,4,5,6,7,8]).then(function(res){
 })
 ```
 
-#### writeMultipleCoilsSameValue
+#### writeMultipleRegistersSameValue
 
 Just a helper with same functionality as *writeMultipleRegisters* providing function for cases when the value is same for the 
 whole bulk of registers.
