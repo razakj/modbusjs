@@ -83,7 +83,8 @@ which can be read in one transaction is 2000.
 *   length: Number of coils to read
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
-If request is successful then result is returned with following attributes
+
+Returns promise with following result
 *   result: Array of booleans
 *   request: Request object
 *   response: Response object
@@ -123,7 +124,8 @@ Reads holding registers from modbus server. Maximum number of registers which ca
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
     *   unsigned: By default all the results are converted as signed. If this options is TRUE then unsigned will be used instead.
-If request is successful then result is returned with following attributes
+
+Returns promise with following result
 *   result: Array of (U)Int16
 *   request: Request object
 *   response: Response object
@@ -163,7 +165,7 @@ Writes single coil value.
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
 
-If request is successful then result is returned with following attributes
+Returns promise with following result
 *   result: Echoed value from the request
 *   request: Request object
 *   response: Response object
@@ -189,7 +191,7 @@ Writes single register value.
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
 
-If request is successful then result is returned with following attributes
+Returns promise with following result
 *   result: Echoed value from the request
 *   request: Request object
 *   response: Response object
@@ -215,7 +217,7 @@ Writes multiple coils in one transaction to the target modbus server.
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
 
-If request is successful then result is returned with following attributes
+Returns promise with following result
 *   result: Number of output coils
 *   request: Request object
 *   response: Response object
@@ -243,7 +245,7 @@ whole bulk of coils.
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
 
-If request is successful then result is returned with following attributes
+Returns promise with following result
 *   result: Number of output coils
 *   request: Request object
 *   response: Response object
