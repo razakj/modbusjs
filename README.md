@@ -16,6 +16,8 @@ Currently implemented and working functionality :
     *   writeSingleRegister
     *   writeMultipleCoils
     *   writeMultipleCoilsSameValue
+    *   writeMultipleRegisters
+    *   writeMultipleRegistersSameValue
 
 ## Installation
 ```javascript
@@ -254,6 +256,60 @@ Returns promise with following result
 
 ```javascript
 mtcp.writeMultipleCoilsSameValue(1, 20, true).then(function(res){
+    // Success
+}).catch(function(err){
+    // Error
+})
+```
+
+#### writeMultipleRegisters
+
+Writes multiple registers in one transaction to the target modbus server.
+
+**function(address, values[,options])**
+
+*   address: Starting register address
+*   values: Array of UInt16 to be written to the server starting from the starting address.
+*   options: Optional
+    *   timeout: Request timeout. Default is 5 seconds.
+
+Returns promise with following result
+*   result: Number of output registers
+*   request: Request object
+*   response: Response object
+
+**example**
+
+```javascript
+mtcp.writeMultipleRegisters(1, [1,2,3,4,5,6,7,8]).then(function(res){
+    // Success
+}).catch(function(err){
+    // Error
+})
+```
+
+#### writeMultipleCoilsSameValue
+
+Just a helper with same functionality as *writeMultipleRegisters* providing function for cases when the value is same for the 
+whole bulk of registers.
+
+**function(address, length, value[,options])**
+
+*   address: Starting register address
+*   length: Number of registers affected
+*   value: UInt16 value to be written to address + length.
+*   options: Optional
+    *   timeout: Request timeout. Default is 5 seconds.
+
+Returns promise with following result
+*   result: Number of output registers
+*   request: Request object
+*   response: Response object
+
+**example**
+
+```javascript
+mtcp.writeMultipleRegistersSameValue(1, 20, 666).then(function(res){
     // Success
 }).catch(function(err){
     // Error

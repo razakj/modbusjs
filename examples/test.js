@@ -15,32 +15,36 @@ mtcp.on('disconnect', function(){
 });
 
 mtcp.connect().then(function(){
-    var promises = [];
-    promises.push(mtcp.readCoils(0, 20));
-    promises.push(mtcp.readDiscreteInputs(0, 10));
-    promises.push(mtcp.readHoldingRegisters(290, 7));
-    promises.push(mtcp.readHoldingRegisters(290, 2, {unsigned: true}));
-    promises.push(mtcp.readInputgRegisters(0, 10));
-    Promise.all(promises).then(function(results){
-        results.forEach(function(result){
-            console.log(result.response);
-        });
-        exit();
+    //execute(1);
+    mtcp.writeMultipleRegistersSameValue(290, 10, 5).then(function(res){
+        console.log(res);
     }).catch(function(err){
         console.log(err);
         exit();
     });
-    //mtcp.writeMultipleCoilsSameValue(21, 1700, false).then(function(res){
-    //    console.log(res);
-    //    exit();
-    //}).catch(function(err){
-    //    console.log(err);
-    //    exit();
-    //})
 }).catch(function(err){
     console.log(err);
     exit();
 });
+
+function execute(r) {
+    var promises = [];
+    promises.push(mtcp.readCoils(0, 1000));
+    promises.push(mtcp.readDiscreteInputs(0, 10));
+    promises.push(mtcp.readHoldingRegisters(290, 100));
+    promises.push(mtcp.readHoldingRegisters(290, 50, {unsigned: true}));
+    promises.push(mtcp.readInputgRegisters(0, 30));
+    Promise.all(promises).then(function(results){
+        console.log("REQUEST "+r);
+        console.log("===============");
+        results.forEach(function(result){
+            console.log(JSON.stringify(result.result));
+        });
+    }).catch(function(err){
+        console.log(err);
+    });
+    setTimeout(function(){execute(r+1)}, 500);
+}
 
 function exit() {
     mtcp.disconnect().then(function(){
