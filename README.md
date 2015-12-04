@@ -83,7 +83,7 @@ which can be read in one transaction is 2000.
 *   options: Optional
     *   timeout: Request timeout. Default is 5 seconds.
 If request is successful then result is returned with following attributes
-*   data: Array of booleans
+*   result: Array of booleans
 *   request: Request object
 *   response: Response object
 
@@ -123,7 +123,7 @@ Reads holding registers from modbus server. Maximum number of registers which ca
     *   timeout: Request timeout. Default is 5 seconds.
     *   unsigned: By default all the results are converted as signed. If this options is TRUE then unsigned will be used instead.
 If request is successful then result is returned with following attributes
-*   data: Array of (U)Int16
+*   result: Array of (U)Int16
 *   request: Request object
 *   response: Response object
 
@@ -163,7 +163,7 @@ Writes single coil value.
     *   timeout: Request timeout. Default is 5 seconds.
 
 If request is successful then result is returned with following attributes
-*   value: Echoed value from the request
+*   result: Echoed value from the request
 *   request: Request object
 *   response: Response object
 
@@ -189,7 +189,7 @@ Writes single register value.
     *   timeout: Request timeout. Default is 5 seconds.
 
 If request is successful then result is returned with following attributes
-*   value: Echoed value from the request
+*   result: Echoed value from the request
 *   request: Request object
 *   response: Response object
 
