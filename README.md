@@ -175,7 +175,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeSingleCoil(6, 0).then(function(res){
+modbusTcpClient.writeSingleCoil(6, 0).then(function(res){
     // Success
 }).catch(function(err){
     // Error
@@ -201,7 +201,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeSingleRegister(1, 123).then(function(res){
+modbusTcpClient.writeSingleRegister(1, 123).then(function(res){
     // Success
 }).catch(function(err){
     // Error
@@ -227,7 +227,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeMultipleCoils(1, [true, false, false, true, 0, 0, 1]).then(function(res){
+modbusTcpClient.writeMultipleCoils(1, [true, false, false, true, 0, 0, 1]).then(function(res){
     // Success
 }).catch(function(err){
     // Error
@@ -255,7 +255,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeMultipleCoilsSameValue(1, 20, true).then(function(res){
+modbusTcpClient.writeMultipleCoilsSameValue(1, 20, true).then(function(res){
     // Success
 }).catch(function(err){
     // Error
@@ -281,7 +281,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeMultipleRegisters(1, [1,2,3,4,5,6,7,8]).then(function(res){
+modbusTcpClient.writeMultipleRegisters(1, [1,2,3,4,5,6,7,8]).then(function(res){
     // Success
 }).catch(function(err){
     // Error
@@ -309,7 +309,7 @@ Returns promise with following result
 **example**
 
 ```javascript
-mtcp.writeMultipleRegistersSameValue(1, 20, 666).then(function(res){
+modbusTcpClient.writeMultipleRegistersSameValue(1, 20, 666).then(function(res){
     // Success
 }).catch(function(err){
     // Error
