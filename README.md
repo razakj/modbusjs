@@ -1,7 +1,7 @@
 # ModbusJS
 [![NPM Version](https://img.shields.io/npm/v/gm.svg?style=flat)](https://www.npmjs.com/package/modbusjs)
 ## Overview
-Modbus communication library for NodeJS using promises. 
+Modbus communication library for NodeJS using promises.  
 ## Status
 The library is still under active development and i keep adding functionality as well as possibly changing already implemented functionality if required. However i'll try to keep already implemented and working interfaces unchanged.
 
