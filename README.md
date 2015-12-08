@@ -39,6 +39,8 @@ Returns a new instance of ModbusTcpClient. Connection is not established at this
 *   port: Port of modbus server (usually 502)
 *   options: Optional
     *   debug: Turn on debugging messages printed out to console. Default value is FALSE
+    *   autoReconnect: Automatic reconnect in case connection is lost
+    *   autoReconnectInterval: Interval before trying to reconnect
 
 **example**
 ```javascript
@@ -73,6 +75,10 @@ modbusTcpClient.disconnect().then(function(){
     // No active connection
 });
 ```
+
+#### isConnected
+
+Connection status.
 
 #### readCoils
 
@@ -332,7 +338,7 @@ modbusTcpClient.on('connect', function(err){
 
 ##### error
 
-Emitted when error occurs.
+Emitted when error occurs. (including connection lost and reconnection failure)
 
 ```javascript
 modbusTcpClient.on('error', function(err){
@@ -342,7 +348,17 @@ modbusTcpClient.on('error', function(err){
 
 ##### disconnect
 
-Emitted when disconnected from the modbus server.
+Emitted when connection is lost. (not emitted during reconnection)
+
+```javascript
+modbusTcpClient.on('disconnect', function(){
+    console.log('DISCONNECTED - EVENT');
+});
+```
+
+##### reconnect
+
+Emitted when sucessfully reconnected.
 
 ```javascript
 modbusTcpClient.on('disconnect', function(){
@@ -351,50 +367,10 @@ modbusTcpClient.on('disconnect', function(){
 ```
 
 #### Examples
+All the examples can be found in *examples* folder or above per individual functions.
+*  [example-polling](https://github.com/razakj/modbusjs/blob/master/examples/polling.js)
 
+Examples can also be triggered directly via npm however IP address of modbus server might have to be modified directly in the file (default *localhost*)
 ```javascript
-var ModbusTcpClient = require('../index').ModbusTcpClient;
-
-var modbusTcpClient = new ModbusTcpClient('192.168.146.2', 502, {debug: true});
-
-modbusTcpClient.on('connect', function(err){
-    console.log('CONNECTED - EVENT');
-});
-
-modbusTcpClient.on('error', function(err){
-    console.log('ERROR - ' + err);
-});
-
-modbusTcpClient.on('disconnect', function(){
-    console.log('DISCONNECTED - EVENT');
-});
-
-modbusTcpClient.connect().then(function(){
-    var promises = [];
-    promises.push(modbusTcpClient.readCoils(0, 10));
-    promises.push(modbusTcpClient.readInputs(0, 10));
-    promises.push(modbusTcpClient.readHoldingRegisters(290, 30));
-    promises.push(modbusTcpClient.readHoldingRegisters(290, 30, {unsigned: true}));
-    promises.push(modbusTcpClient.readInputgRegisters(0, 15));
-    Promise.all(promises).then(function(results){
-        results.forEach(function(result){
-            console.log(result);
-        });
-        exit();
-    }).catch(function(err){
-        console.log(err);
-        exit();
-    });
-}).catch(function(err){
-    console.log(err);
-    exit();
-});
-
-function exit() {
-    modbusTcpClient.disconnect().then(function(){
-        console.log('DISCONNECTED - PROMISED');
-    }).catch(function(err){
-        console.log(err);
-    });
-}
+npm run [example-name]
 ```
