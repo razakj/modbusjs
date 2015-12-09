@@ -1,12 +1,10 @@
 var ModbusTcpClient = require('../index').ModbusTcpClient;
 
-var mtcp = new ModbusTcpClient('192.168.146.2', 502, {debug: true});
+var mtcp = new ModbusTcpClient('localhost', 502, {debug: true});
 
 mtcp.on('connect', function(err){
     console.log('CONNECTED - EVENT');
-});
-
-mtcp.on('error', function(err){
+}).on('error', function(err){
     console.log('ERROR - ' + err);
 });
 
@@ -15,16 +13,16 @@ mtcp.on('disconnect', function(){
 });
 
 mtcp.connect().then(function(){
-    //execute(1);
-    mtcp.writeMultipleRegistersSameValue(290, 10, 5).then(function(res){
-        console.log(res);
-    }).catch(function(err){
-        console.log(err);
-        exit();
-    });
+    mtcp.readCoils(0, 20).then(function(res){
+        console.log(res.result);
+        mtcp.reconnect().then(function(){
+            console.log('DISCONNECTED - PROMISE')
+        }).catch(function(err){
+            console.log('E ' + err);
+        });
+    })
 }).catch(function(err){
     console.log(err);
-    exit();
 });
 
 function execute(r) {
@@ -44,12 +42,4 @@ function execute(r) {
         console.log(err);
     });
     setTimeout(function(){execute(r+1)}, 500);
-}
-
-function exit() {
-    mtcp.disconnect().then(function(){
-        console.log('DISCONNECTED - PROMISED');
-    }).catch(function(err){
-        console.log(err);
-    });
 }

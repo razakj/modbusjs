@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example-polling": "node examples/polling.js"
+    "example-polling": "node examples/polling.js",
+    "example-connection": "node examples/connection.js"
   },
   "repository": {
     "type": "git",
