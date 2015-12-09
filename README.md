@@ -391,8 +391,8 @@ modbusTcpClient.on('disconnect', function(){
 
 #### Examples
 All the examples can be found in *examples* folder or above per individual functions.
-*  [example-polling](https://github.com/razakj/modbusjs/blob/master/examples/polling.js)
-*  [example-connection](https://github.com/razakj/modbusjs/blob/master/examples/connection.js)
+*  [example-tcp-polling](https://github.com/razakj/modbusjs/blob/master/examples/tcpPolling.js)
+*  [example-tcp-connection](https://github.com/razakj/modbusjs/blob/master/examples/tcpConnection.js)
 
 Examples can triggered via npm however IP address of modbus server might have to be modified directly in the file (default *localhost*)
 ```javascript

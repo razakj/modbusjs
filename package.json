@@ -7,8 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "example-polling": "node examples/polling.js",
-    "example-connection": "node examples/connection.js"
+    "example-tcp-polling": "node examples/tcpPolling.js",
+    "example-tcp-connection": "node examples/tcpConnection.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
     "plc",
     "automation"
   ],
+  "dependencies": {},
+  "optionalDependencies": {
+    "serialport": "^2.0.5"
+  },
   "author": "Jakub Razak",
   "license": "MIT",
   "bugs": {

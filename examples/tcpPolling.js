@@ -1,6 +1,6 @@
 var ModbusTcpClient = require('../index').ModbusTcpClient;
 
-var mtcp = new ModbusTcpClient('192.168.146.2', 502, {autoReconnect: true, autoReconnectInterval: 5});
+var mtcp = new ModbusTcpClient('localhost', 502, {autoReconnect: true, autoReconnectInterval: 5});
 
 mtcp.on('error', function(err){
     console.log(err);
