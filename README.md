@@ -1,4 +1,5 @@
 # ModbusJS
+[![Build Status](https://travis-ci.org/razakj/modbusjs.svg?branch=master)](https://travis-ci.org/razakj/modbusjs)
 [![NPM Version](https://img.shields.io/npm/v/gm.svg?style=flat)](https://www.npmjs.com/package/modbusjs)
 ## Overview
 Modbus communication library for NodeJS using promises. 
