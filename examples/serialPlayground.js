@@ -4,12 +4,11 @@ var mserial = new ModbusSerialClient('COM1');
 
 mserial.getAvailablePorts().then(function(ports){
     return mserial.connect().then(function(){
-        console.log('CONNECTED');
-        return mserial.readCoils(0, 10);
+        return mserial.readCoils(0, 2);
     });
 }).catch(function(err){
     console.log(err);
     process.exit(-1);
-}).then(function(){
-    console.log('DONE');
+}).then(function(data, request, response){
+    console.log(data);
 });
